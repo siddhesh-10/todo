@@ -120,7 +120,7 @@ router.get('/home',requirelogin,(req,res)=>{
   User.find({_id : req.user._id})
    .then(user=>{
      console.log("bbh");
-     console.log(user[0].notes);
+   
       res.json({notes :user[0].notes})
    }).catch(err=>
    {
@@ -184,7 +184,27 @@ router.get('/home',requirelogin,(req,res)=>{
         console.log(err);
     })
    })
-  })
+  });
+
+  router.post('/upitem',requirelogin,(req,res)=>{
+    const note={
+      title:req.body.title,
+      content:req.body.content
+  }
+    User.updateOne({_id: req.user._id,"notes._id":req.body.id}, {$set: {'notes.$.title': req.body.title,
+    'notes.$.content': req.body.content}}).then(err=>{
+     User.find({_id : req.user._id})
+     .then(user=>{
+       console.log("hhh");
+      
+        res.json({notes :user[0].notes})
+     }).catch(err=>
+     {
+         console.log(err);
+     })
+    })
+   })
+   ;
   router.put('/upname',requirelogin,(req,res)=>{
     
    User.updateOne({_id: req.user._id}, {$set: { name: req.body.name }}).then(err=>{

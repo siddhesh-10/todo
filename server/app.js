@@ -10,11 +10,14 @@ const bodyParser = require('body-parser');
 
 require("./models/user");
 
-
+var path = require('path')
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+var serveStatic = require('serve-static')
 
+
+app.use(serveStatic(path.join(__dirname, 'dist')))
 mongoose.connect(MONGOURI,{
     useNewUrlParser : true,
     useUnifiedTopology:true
@@ -57,10 +60,9 @@ if(process.env.NODE_ENV=="production"){
     })
 }
 
-app.listen(PORT,()=>{
-   // console.log(process.env.MONGOURI);
-    console.log("server is running on",PORT)
-})
+app.listen(process.env.PORT || 5000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 
 
 

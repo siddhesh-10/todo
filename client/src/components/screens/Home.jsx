@@ -61,6 +61,32 @@ function Home() {
       })
     
   }
+  function upnote(id,title,content)
+  {
+    
+    console.log("updating");
+    fetch('/upitem', {
+      method: "post",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("jwt")
+      },
+      body: JSON.stringify({
+          id:id,
+          title:title,
+          content:content
+      })
+  }).then(res => res.json())
+      .then(result => {
+          //   console.log(result)
+          setData([]);
+          setData(result.notes);
+          cnote({title:"",content:""});
+      }).catch(err => {
+          console.log(err)
+      })
+    
+  }
   function addItem(event)
   {
     
@@ -108,9 +134,9 @@ function Home() {
   return (
     <div>
       <Header />
-      <InputArea addItem={addItem} handleChange={handleChange} title={inote.title} content={inote.content} isexpand={isexpand}/>
+      <InputArea addItem={addItem}  handleChange={handleChange} title={inote.title} content={inote.content} isexpand={isexpand}/>
         {data.map((props) =>{
-         return <Note title={props.title} content={props.content}  id={props._id} deletenote={deletenote}/>
+         return <Note title={props.title} upnote={upnote} content={props.content}  id={props._id} deletenote={deletenote}/>
           
         })}
        

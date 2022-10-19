@@ -12,7 +12,8 @@ dev.js
 # production
 /build
 package-lock.json
-
+/client
+client
 # misc
 .DS_Store
 .env.local
