@@ -7,7 +7,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'reactjs-bottom-navigation/dist/index.css'
 
-import BottomNavigation from 'reactjs-bottom-navigation'
 
 ReactDOM.render(
 

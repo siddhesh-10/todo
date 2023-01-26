@@ -11,7 +11,7 @@ import { Card, Button} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "./Header";
 import Footer from "./Footer";
-import Note from "./Note";
+
  
 function Profile()
 {
