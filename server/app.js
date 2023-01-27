@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var serveStatic = require('serve-static')
 
 
-app.use(serveStatic(path.join(__dirname, 'dist')))
+// app.use(serveStatic(path.join(__dirname, 'dist')))
 mongoose.connect(MONGOURI,{
     useNewUrlParser : true,
     useUnifiedTopology:true
